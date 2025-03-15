@@ -222,45 +222,6 @@
             text-transform: uppercase;
         }
 
-        /* Novos estilos para o botão de copiar */
-        .copy-text {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 5px 0;
-        }
-
-        .copy-btn {
-            cursor: pointer;
-            margin-left: 8px;
-            color: #6CB4F4;
-            transition: color 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            color: #2C5D8D;
-        }
-
-        .copy-feedback {
-            position: absolute;
-            background-color: #2C5D8D;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .copy-feedback.show {
-            opacity: 1;
-        }
-
         /* Ajustes para melhor visualização em dispositivos móveis */
         @media (max-width: 767.98px) {
             .parents-names .col-6 {
@@ -273,6 +234,49 @@
                 margin-bottom: 10px;
             }
         }
+
+            .pix-copy-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 10px 0;
+                position: relative;
+            }
+
+            .copy-btn {
+                background: none;
+                border: none;
+                color: #6CB4F4;
+                cursor: pointer;
+                font-size: 1.2rem;
+                padding: 5px;
+                margin-left: 10px;
+                transition: all 0.3s;
+            }
+
+            .copy-btn:hover {
+                color: #2C5D8D;
+                transform: scale(1.1);
+            }
+
+            .copy-feedback {
+                position: absolute;
+                bottom: -25px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #2C5D8D;
+                color: white;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .copy-feedback.show {
+                opacity: 1;
+            }
+
     </style>
 </head>
 <body>
@@ -286,7 +290,7 @@
                     <div class="click-text">CLIQUE PARA ABRIR</div>
                 </div>
                 <div class="envelope-back">
-                    <p>Abra o convite abaixo</p>
+                    <p>Role até o convite abaixo</p>
                 </div>
             </div>
         </div>
@@ -342,14 +346,15 @@
                         <p class="fst-italic"> <span class="lato-light-italic">"Amo-te, não segundo a minha vontade, mas conforme a de Deus! Se procurar somente a mim, não encontrará nada; mas se através de mim você procurar Deus, encontrará tudo, uma vez que, repito, é necessário sermos três para amarmos: eu, você e Deus!" </span> <span class="lato-regular-italic">— Venerável Fulton Sheen</span></p>
                     </div>
                 </div>
-
                 <div class="pix-container">
-                    <p><strong>Nosso presente será a sua presença, mas, se deseja nos presentear com algo a mais, sugerimos que seja um pix, de qualquer valor.</strong></p>
+                    <p>Nosso presente será a sua presença, mas, se deseja nos presentear com algo a mais, sugerimos que seja um pix, de qualquer valor.</p>
                     <img src="qr.png" alt="QR Code PIX" class="img-fluid">
-                    <div class="copy-text">
-                        <span id="pixNumber">75985253591</span>
-                        <i class="fas fa-copy copy-btn" id="copyBtn" title="Copiar número PIX"></i>
-                        <span class="copy-feedback" id="copyFeedback">Copiado!</span>
+                    <div class="pix-copy-container">
+                        <span id="pixNumber"><b>75985253591</b></span>
+                        <button id="copyBtn" class="copy-btn" title="Copiar chave PIX">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <span id="copyFeedback" class="copy-feedback">Copiado!</span>
                     </div>
                     <p>Lívia Carolina Silva Bacelo</p>
                 </div>
@@ -359,8 +364,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-                Aqui está o script completo para adicionar a funcionalidade de copiar o número PIX:
-        javascriptCopiar$(document).ready(function() {
+        $(document).ready(function() {
             $('#envelope').click(function() {
                 $(this).addClass('open');
 
